@@ -98,6 +98,10 @@ let
     _specialStyle = {},
 _specialScript = [];
 
+var selector = new Selector((e) => {
+    console.log(e)
+    $('.popContent').css('display','block');
+});
 
 //追加页面内容
 $('body').append(_popBox);
@@ -289,9 +293,6 @@ $('.close').click(function () {
     selector.start();
 });
 
-var selector = new Selector((e) => {
-    $('.popContent').css('display','block');
-});
 
 
 
