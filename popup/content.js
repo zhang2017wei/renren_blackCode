@@ -27,11 +27,25 @@ $('.changeLogo').change(function() {
     preview();
 });
 
+//changeDisplay
+$('.changeDisplay').change(function() {
+    let _display = $(".changeDisplay input:radio:checked").val();
+    _specialStyle.display = _display;
+    preview();
+});
+
 //color
 $('.changeColor').change(function() {
     let _color = $('.popBox .changeColor input').val();
     if(!_color || _color === '')return;
     _specialStyle.color = _color;
+    preview();
+});
+
+//changeBackgroundColor
+$('.changeBackgroundColor').change(function() {
+    let _BGColor = $('.popBox .changeBackgroundColor input').val();
+    _specialStyle.backgroundColor = _BGColor;
     preview();
 });
 
