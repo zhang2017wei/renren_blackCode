@@ -76,7 +76,7 @@ Selector.prototype = {
                 selector: this.getSelector(this.target),
                 type: this.target.tagName.toLowerCase()
             });
-            setTimeout( ()=>this.pause(),1000)
+            setTimeout( ()=>this.pause(),10)
         }
         this.cancelEvent(e);
     },
