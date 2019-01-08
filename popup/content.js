@@ -5,6 +5,24 @@ let
     _class= 'test_p1',
     _specialStyle = {},
 _specialScript = [];
+
+
+
+let _domType = '';
+let _addClass = $(".AMCustomContent .popBox .customUl");
+switch(_domType){
+    case 'img':
+        _addClass.addClass("img");
+        break;
+    case 'a':
+        _addClass.addClass("aTage");
+        break;
+    case 'text':
+        _addClass.addClass("text");
+        break;
+    default:
+        _addClass.addClass("showAll");
+}
 //追加页面内容
 $('#AMCustomContent').append(_popBox);
 
