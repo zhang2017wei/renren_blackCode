@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AM custom</title>
+</head>
+<link rel="stylesheet" href="./custom.css">
+<body>
+<div class="testText" style="width: 36%">
+    <p class="test_p1">2019年01月07日14:32:11</p>
+    <img src="https://cdn.chime.me/image/fs/sitebuild/20181224/16/h80_original_20f668cc-9598-4483-b21d-359571ad21f8.jpeg" alt="" class="logo">
+</div>
+<div class="AMCustomContent" id="AMCustomContent">
+    <div class="popBox">
+        <p class="customType">Special Style：</p>
+        <ul>
+            <li class="changeLogo radioInput">
+                <span>Logo:</span>
+                <input type="radio" name="size" value="1.2" id="female1"/><label for="female1">120%</label>
+                <input type="radio" name="size" value="1.5" id="female2"/><label for="female2">150%</label>
+                <input type="radio" name="size" value="1.8" id="female3"/><label for="female3">180%</label>
+                <input type="radio" name="size" value="2.2" id="female4"/><label for="female4">220%</label>
+                <input type="radio" name="size" value="2.6" id="female5"/><label for="female5">260%</label>
+            </li>
+            <li class="changeColor">
+                <span>color:</span>
+                <input type="text" placeholder="#ffffff" maxlength="7"/>
+            </li>
+            <li class="changeFontSize">
+                <span>font-size:</span>
+                <input type="number" placeholder="14" maxlength="2"/> px
+            </li>
+            <li class="changeTextAlign radioInput">
+                <span>text-align:</span>
+                <input type="radio" name="text" value="left" id="left"/><label for="left">left</label>
+                <input type="radio" name="text" value="center" id="center"/><label for="center">center</label>
+                <input type="radio" name="text" value="right" id="right"/><label for="right">right</label>
+            </li>
+            <li class="changeMargin">
+                <span>margin:</span>
+                <p><code>margin-top:</code><input class="marginTop" type="number" placeholder="" maxlength="3"/> px</p>
+                <p><code>margin-right:</code><input class="marginRight" type="number" placeholder="" maxlength="3"/> px</p>
+                <p><code>margin-bottom:</code><input class="marginBottom" type="number" placeholder="" maxlength="3"/> px</p>
+                <p><code>margin-left:</code><input class="marginLeft" type="number" placeholder="" maxlength="3"/> px</p>
+            </li>
+            <li class="changePadding">
+                <span>padding:</span>
+                <p><code>padding-top:</code><input class="paddingTop" type="number" placeholder="" maxlength="3"/> px</p>
+                <p><code>padding-right:</code><input class="paddingRight" type="number" placeholder="" maxlength="3"/> px</p>
+                <p><code>padding-bottom:</code><input class="paddingBottom" type="number" placeholder="" maxlength="3"/> px</p>
+                <p><code>padding-left:</code><input class="PaddingLeft" type="number" placeholder="" maxlength="3"/> px</p>
+            </li>
+            <li class="text-area">
+                <p><span>special style:</span> <button class="copyBtn">copy</button></p>
+                <textarea rows="6" cols="120" class="specialStyleTextArea" disabled></textarea>
+            </li>
+        </ul>
+    </div>
+
+</div>
+</body>
+</html>
+<script src="../js/jq.js"></script>
+<script src="./content.js"></script>
+
