@@ -1,12 +1,26 @@
-function Selector() {
+function Selector(callback) {
+    this.callback = callback;
     this.init();
 }
 
 Selector.prototype = {
     init: function() {
+        this.handleMouseDown = this.handleMouseDown.bind(this);
+        this.handleMouseOver = this.handleMouseOver.bind(this);
+        this.handleMouseOut = this.handleMouseOut.bind(this);
+        this.cancelEvent = this.cancelEvent.bind(this);
+    },
+    start: function() {
         this.bindEvents();
     },
+    stop: function() {
+        this.unbindEvents();
+        if (this.mask) {
+            this.mask.parentNode.removeChild(this.mask);
+        }
+    },
     setMask: function(target) {
+        this.target = target;
         var mask = this.mask;        
         if (!mask) {
             mask = this.mask = document.createElement('div');
@@ -23,11 +37,12 @@ Selector.prototype = {
             `;
             document.body.appendChild(mask);
         }
-        let offset = $(target).offset();
+        let offset = target.getBoundingClientRect();
         mask.style.left = offset.left + 'px';
         mask.style.top = offset.top + 'px';
-        mask.style.height = $(target).outerHeight() + 'px';
-        mask.style.width = $(target).outerWidth() + 'px';
+        mask.style.height = offset.height + 'px';
+        mask.style.width = offset.width + 'px';
+        mask.textContent = target.tagName;
     },
     removeMask(target) {
         var mask = target.getElementsByClassName('plugin-mask')[0];
@@ -42,19 +57,65 @@ Selector.prototype = {
         }
     },
     bindEvents: function() {
-        document.body.addEventListener('mouseover', (e) => this.handleMouseOver(e));
-        document.body.addEventListener('mouseout', (e) => this.handleMouseOut(e));
+        document.addEventListener('mouseover', this.handleMouseOver);
+        document.addEventListener('mouseout', this.handleMouseOut);
+        document.addEventListener('mousedown', this.handleMouseDown, true);
+        document.addEventListener('mouseup', this.cancelEvent, true);
+        document.addEventListener('click', this.cancelEvent, true);
+    },
+    unbindEvents: function() {
+        document.removeEventListener('mouseover', this.handleMouseOver);
+        document.removeEventListener('mouseout', this.handleMouseOut);
+        document.removeEventListener('mousedown', this.handleMouseDown, true);
+        document.removeEventListener('mouseup', this.cancelEvent, true);
+        document.removeEventListener('click', this.cancelEvent, true);
     },
     handleMouseOver(e) {
-        let target = e.target;
-        if (target.getElementsByClassName('plugin-mask').length === 0) {
-            this.setMask(e.target);
-        }
+        this.setMask(e.target);
         e.stopPropagation();
     },
     handleMouseOut(e) {
         e.stopPropagation();
+    },
+    handleMouseDown(e) {
+        if (this.callback) {
+            this.callback({
+                selector: this.getSelector(this.target),
+                type: this.target.tagName.toLowerCase()
+            });
+        }
+        this.cancelEvent(e);
+    },
+    cancelEvent(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    },
+    getSelector(elem) {
+        let arr = [];
+        let parent = elem;
+        while (parent && parent.tagName.toLowerCase() !== 'body') {
+            arr.push(_getSelector(parent));
+            parent = parent.parentNode;
+        }
+
+        if (parent) {
+            arr.push(_getSelector(parent));
+        }
+
+        function _getSelector(e) {
+            let str = e.tagName;
+            let cls = [].slice.call(e.classList);
+            if (cls.length) {
+                str += '.' + cls.join('.');
+            }
+            if (e.id) {
+                str += '#' + e.id;
+            }
+            return str;
+        }
+
+        return arr.reverse().join('>');
     }
 }
 
-var selector = new Selector();
+// var selector = new Selector((e) => console.log(e));
