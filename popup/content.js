@@ -127,16 +127,23 @@ switch(_domType){
 //点击提交
 $('#submitBtn').click(function () {
     getColorValue();
-
 });
 
+
+function __$(cls) {
+    return {
+        change: function(cb) {
+            $('body').on('change', cls, cb);
+        }
+    }
+}
 
 //logo
 let _logoWidth,_logoHeight;
 setTimeout(function () {//本地项目 同时渲染  所以加setTimeout
      _logoWidth = $("."+_class).width(),_logoHeight = $("."+_class).height();
 },500);
-$('.changeLogo').change(function() {
+__$('.changeLogo').change(function() {
     let _multiple = $(".changeLogo input:radio:checked").val();
     _specialStyle.width =(_logoWidth * _multiple).toFixed(2) + 'px';
     _specialStyle.height = (_logoHeight * _multiple).toFixed(2) + 'px';
@@ -144,7 +151,7 @@ $('.changeLogo').change(function() {
 });
 
 //changeDisplay
-$('.changeDisplay').change(function() {
+__$('.changeDisplay').change(function() {
     let _display = $(".changeDisplay input:checked").val();
     if(_display === 'none'){
         _specialStyle.display = _display;
@@ -155,7 +162,7 @@ $('.changeDisplay').change(function() {
 });
 
 //color
-$('.changeColor').change(function() {
+__$('.changeColor').change(function() {
     let _color = $('.popBox .changeColor input').val();
     if(!_color || _color === '')return;
     _specialStyle.color = _color;
@@ -163,35 +170,35 @@ $('.changeColor').change(function() {
 });
 
 //changeBackgroundColor
-$('.changeBackgroundColor').change(function() {
+__$('.changeBackgroundColor').change(function() {
     let _BGColor = $('.popBox .changeBackgroundColor input').val();
     _specialStyle.backgroundColor = _BGColor;
     previewStyle();
 });
 
 //font-size
-$('.changeFontSize').change(function() {
+__$('.changeFontSize').change(function() {
     let _fontSize = $('.popBox .changeFontSize input').val();
     _specialStyle.fontSize = _fontSize + 'px';
     previewStyle();
 });
 
 //font weight
-$('.changeFontWeight').change(function() {
+__$('.changeFontWeight').change(function() {
     let _multiple = $(".changeFontWeight input:radio:checked").val();
     _specialStyle.fontWeight = _multiple;
     previewStyle();
 });
 
 //text-align
-$('.changeTextAlign').change(function() {
+__$('.changeTextAlign').change(function() {
     let _textAlign = $(".changeTextAlign input:radio:checked").val();
     _specialStyle.textAlign  = _textAlign;
     previewStyle();
 });
 
 //margin
-$('.changeMargin input').change(function() {
+__$('.changeMargin input').change(function() {
     let _marginTop = $('.changeMargin .marginTop').val(),
         _marginRight = $('.changeMargin .marginRight').val(),
         _marginBottom = $('.changeMargin .marginBottom').val(),
@@ -204,7 +211,7 @@ $('.changeMargin input').change(function() {
 });
 
 //padding
-$('.changePadding input').change(function() {
+__$('.changePadding input').change(function() {
     let _paddingTop = $('.changePadding .paddingTop').val(),
         _paddingRight = $('.changePadding .paddingRight').val(),
         _paddingBottom = $('.changePadding .paddingBottom').val(),
@@ -224,7 +231,7 @@ function previewStyle() {
     $('.specialStyleTextArea').text(`<style>.${_class}${cssString};</style>`);
 }
 
-$('.copyBtn').click(function() {
+$('body').on('click', 'copyBtn', function() {
     let inputEl = $('.specialStyleTextArea')[0]
     inputEl.focus();
     inputEl.setSelectionRange(0, inputEl.value.length);
@@ -234,35 +241,35 @@ $('.copyBtn').click(function() {
 
 
 //changeText
-$('.changeText').change(function() {
+__$('.changeText').change(function() {
     let _text = $('.popBox .changeText input').val();
     $("."+_class).text(_text);
     _specialScript.push(`.text("${_text}")`);
     previewScript();
 });
 //replace url
-$('.changeReplaceUrl').change(function() {
+__$('.changeReplaceUrl').change(function() {
     let _replaceUrl = $('.changeReplaceUrl input').val();
     _specialScript.push(`.attr("href","${_replaceUrl}")`);
     previewScript();
 });
 
 //changeAddUrl
-$('.changeAddUrl').change(function() {
+__$('.changeAddUrl').change(function() {
     let _addUrl = $('.changeAddUrl input').val();
     $("."+_class).wrap(`<a href='${_addUrl}'></a>`);
     _specialScript.push(`.wrap(<a href='${_addUrl}'></a>)`);
     previewScript();
 });
 //updateText
-$('.updateText').change(function() {
+__$('.updateText').change(function() {
     let _addText = $('.updateText input').val();
     $("."+_class).before(`<p>${_addText}</p>`);
     _specialScript.push(`.before(<p>${_addText}</p>)`);
     previewScript();
 });
-//updateImg https://cdn.chime.me/image/fs01/agnentinfo/20180819/23/original_19725872235693598.png
-$('.updateImg').change(function() {
+
+__$('.updateImg').change(function() {
     let _imgUrl = $('.updateImg input').val();
     $("."+_class).before(`<img src="${_imgUrl}" alt="">`);
     _specialScript.push(`.before(<img src="${_imgUrl}" alt="">)`);
@@ -288,7 +295,7 @@ $('.movePlace .toRight').click(function () {
 });
 
 
-$('.close').click(function () {
+$('body').on('click', '.close', function () {
     $('.popContent').css('display','none');
     selector.start();
 });
