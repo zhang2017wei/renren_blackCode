@@ -100,6 +100,15 @@ _specialScript = [];
 
 //追加页面内容
 $('body').append(_popBox);
+setTimeout(()=>{
+    var selector = new Selector((e) => function () {
+
+    });
+
+},1000);
+
+
+
 let _domType = '';
 let _addClass = $(".AMCustomContent .popBox .customUl");
 let _height = document.documentElement.clientHeight;

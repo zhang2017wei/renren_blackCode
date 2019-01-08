@@ -11,7 +11,8 @@
   "permissions" : ["tabs","http://*/*"],
   "content_scripts":[{
     "matches":["http://*/*","https://*/*"],
-    "js":["js/jq.js","popup/content.js", "js/selector.js"],
+    "js":["js/jq.js", "js/selector.js","popup/content.js"],
+    "css":["popup/custom.css"],
     "run_at":"document_end"
   }]
 }
