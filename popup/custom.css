@@ -131,6 +131,12 @@ body {
     right: 0;
 }
 
+.plugin-mask span {
+    margin: 5px;
+    font-weight: bold;
+    background: white;
+}
+
 .close{
     cursor: pointer;
 }

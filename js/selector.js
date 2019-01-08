@@ -47,7 +47,7 @@ Selector.prototype = {
         mask.style.top = offset.top + 'px';
         mask.style.height = offset.height + 'px';
         mask.style.width = offset.width + 'px';
-        mask.textContent = target.tagName;
+        mask.innerHTML = '<span>' + target.tagName + '</span>';
     },
     bindEvents: function() {
         document.addEventListener('mouseover', this.handleMouseOver);
@@ -76,7 +76,7 @@ Selector.prototype = {
                 selector: this.getSelector(this.target),
                 type: this.target.tagName.toLowerCase()
             });
-            this.pause();
+            setTimeout( ()=>this.pause(),1000)
         }
         this.cancelEvent(e);
     },
