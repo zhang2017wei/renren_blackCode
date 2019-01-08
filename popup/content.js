@@ -100,19 +100,21 @@ $('.changePadding input').change(function() {
     previewStyle();
 });
 
-<<<<<<< HEAD
+
 function previewStyle() {
     $("."+_class).css(_specialStyle);
-    $('.specialStyleTextArea').text('<style>.'+_class+JSON.stringify(_specialStyle)+'</style>');
+    let cssString = JSON.stringify(_specialStyle);
+    cssString = cssString.replace(/"/g, '').replace(/,/g, ';')
+    $('.specialStyleTextArea').text('<style>.'+ cssString +'</style>');
 }
-=======
+
 $('.copyBtn').click(function() {
     let inputEl = $('.specialStyleTextArea')[0]
     inputEl.focus();
     inputEl.setSelectionRange(0, inputEl.value.length);
     let result = document.execCommand('Copy', true);
 })
->>>>>>> fee1ae22edc44552b18b850ba31e51ef5ef02c05
+
 
 
 //changeText
@@ -151,15 +153,7 @@ $('.updateImg').change(function() {
     previewScript();
 });
 
-<<<<<<< HEAD
 function previewScript() {
     $('.specialScriptTextArea').text(`<script>$('.${_class}')${_specialScript}</script>`);
-=======
-function preview() {
-    $("."+_class).css(_specialStyle);
-    let cssString = JSON.stringify(_specialStyle);
-        cssString = cssString.replace(/"/g, '').replace(/,/g, ';')
-    $('.specialStyleTextArea').text('<style>.'+ cssString +'</style>');
->>>>>>> fee1ae22edc44552b18b850ba31e51ef5ef02c05
 }
 
