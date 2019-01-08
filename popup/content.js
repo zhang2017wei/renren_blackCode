@@ -90,13 +90,21 @@ $('.changePadding input').change(function() {
     preview();
 });
 
+$('.copyBtn').click(function() {
+    let inputEl = $('.specialStyleTextArea')[0]
+    inputEl.focus();
+    inputEl.setSelectionRange(0, inputEl.value.length);
+    let result = document.execCommand('Copy', true);
+})
 
 
 
 
 function preview() {
     $("."+_class).css(_specialStyle);
-    $('.specialStyleTextArea').text('<style>.'+_class+JSON.stringify(_specialStyle)+'</style>');
+    let cssString = JSON.stringify(_specialStyle);
+        cssString = cssString.replace(/"/g, '').replace(/,/g, ';')
+    $('.specialStyleTextArea').text('<style>.'+ cssString +'</style>');
 }
 
 
