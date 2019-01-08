@@ -94,12 +94,13 @@ let _popBox = `<div class="popContent">
     </div>
 </div>`;
 let
-    _class= 'test_p1',
+    _class= '',
     _specialStyle = {},
 _specialScript = [];
 
 var selector = new Selector((e) => {
     console.log(e)
+    _class = e.selector;
     $('.popContent').css('display','block');
 });
 
@@ -124,11 +125,6 @@ switch(_domType){
         _addClass.addClass("showAll");
 }
 
-//点击提交
-$('#submitBtn').click(function () {
-    getColorValue();
-});
-
 
 function __$(cls) {
     return {
@@ -141,7 +137,7 @@ function __$(cls) {
 //logo
 let _logoWidth,_logoHeight;
 setTimeout(function () {//本地项目 同时渲染  所以加setTimeout
-     _logoWidth = $("."+_class).width(),_logoHeight = $("."+_class).height();
+     _logoWidth = $(_class).width();_logoHeight = $(_class).height();
 },500);
 __$('.changeLogo').change(function() {
     let _multiple = $(".changeLogo input:radio:checked").val();
@@ -225,10 +221,10 @@ __$('.changePadding input').change(function() {
 
 
 function previewStyle() {
-    $("."+_class).css(_specialStyle);
+    $(_class).css(_specialStyle);
     let cssString = JSON.stringify(_specialStyle);
     cssString = cssString.replace(/"/g, '').replace(/,/g, ';');
-    $('.specialStyleTextArea').text(`<style>.${_class}${cssString};</style>`);
+    $('.specialStyleTextArea').text(`<style>${_class}${cssString};</style>`);
 }
 
 $('body').on('click', 'copyBtn', function() {
@@ -243,7 +239,7 @@ $('body').on('click', 'copyBtn', function() {
 //changeText
 __$('.changeText').change(function() {
     let _text = $('.popBox .changeText input').val();
-    $("."+_class).text(_text);
+    $(_class).text(_text);
     _specialScript.push(`.text("${_text}")`);
     previewScript();
 });
@@ -257,21 +253,21 @@ __$('.changeReplaceUrl').change(function() {
 //changeAddUrl
 __$('.changeAddUrl').change(function() {
     let _addUrl = $('.changeAddUrl input').val();
-    $("."+_class).wrap(`<a href='${_addUrl}'></a>`);
+    $(_class).wrap(`<a href='${_addUrl}'></a>`);
     _specialScript.push(`.wrap(<a href='${_addUrl}'></a>)`);
     previewScript();
 });
 //updateText
 __$('.updateText').change(function() {
     let _addText = $('.updateText input').val();
-    $("."+_class).before(`<p>${_addText}</p>`);
+    $(_class).before(`<p>${_addText}</p>`);
     _specialScript.push(`.before(<p>${_addText}</p>)`);
     previewScript();
 });
 
 __$('.updateImg').change(function() {
     let _imgUrl = $('.updateImg input').val();
-    $("."+_class).before(`<img src="${_imgUrl}" alt="">`);
+    $(_class).before(`<img src="${_imgUrl}" alt="">`);
     _specialScript.push(`.before(<img src="${_imgUrl}" alt="">)`);
     previewScript();
 });
