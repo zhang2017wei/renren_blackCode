@@ -132,6 +132,7 @@ body {
 }
 
 .plugin-mask span {
+    margin: 5px;
     font-weight: bold;
     background: white;
 }
