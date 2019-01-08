@@ -70,10 +70,23 @@ body {
     min-width: 150px;
 }
 
+.specialStyleTextArea{
+    user-select: none;
+}
+ img{
+     max-width: 100%;
+     max-height: 100%;
+ }
 
-
-
-
+ .AMCustomContent .popBox .customUl li{
+     display: none;
+ }
+.AMCustomContent .popBox .customUl .show{
+    display: block;
+}
+.img .typeImg,.aTage .typeA,.text .typeNormal,.showAll li{
+    display: block!important;
+}
 
 
 

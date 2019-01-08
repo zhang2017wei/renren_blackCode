@@ -8,59 +8,94 @@
 <body>
 <div class="testText" style="width: 36%">
     <p class="test_p1">2019年01月07日14:32:11</p>
+    <a class="test_p2" href="www.baidu.com">测试</a>
     <img src="https://cdn.chime.me/image/fs/sitebuild/20181224/16/h80_original_20f668cc-9598-4483-b21d-359571ad21f8.jpeg" alt="" class="logo">
 </div>
 <div class="AMCustomContent" id="AMCustomContent">
     <div class="popBox">
         <p class="customType">Special Style：</p>
-        <ul>
-            <li class="changeLogo radioInput">
-                <span>Logo:</span>
+        <ul class="customUl">
+            <li class="changeLogo radioInput typeImg">
+                <span>scale:</span>
+                <input type="radio" name="size" value="1" id="female0"/><label for="female0">100%</label>
                 <input type="radio" name="size" value="1.2" id="female1"/><label for="female1">120%</label>
                 <input type="radio" name="size" value="1.5" id="female2"/><label for="female2">150%</label>
                 <input type="radio" name="size" value="1.8" id="female3"/><label for="female3">180%</label>
                 <input type="radio" name="size" value="2.2" id="female4"/><label for="female4">220%</label>
                 <input type="radio" name="size" value="2.6" id="female5"/><label for="female5">260%</label>
             </li>
-            <li class="changeDisplay radioInput">
+            <li class="changeDisplay radioInput show">
                 <span>display:</span>
-                <input type="radio" name="size" value="none" id="hidden"/><label for="hidden">hidden</label>
+                <input type="checkbox" name="size" value="none" id="hidden"/><label for="hidden">hidden</label>
             </li>
-            <li class="changeColor">
+            <li class="changeColor typeNormal typeA">
                 <span>color:</span>
                 <input type="text" placeholder="#ffffff" maxlength="7"/>
             </li>
-            <li class="changeBackgroundColor">
+            <li class="changeBackgroundColor typeNormal">
                 <span>backgroundColor:</span>
                 <input type="text" placeholder="#ffffff" maxlength="7"/>
             </li>
-            <li class="changeFontSize">
+            <li class="changeFontSize typeNormal typeA">
                 <span>font-size:</span>
                 <input type="number" placeholder="14" maxlength="2"/> px
             </li>
-            <li class="changeTextAlign radioInput">
+            <li class="changeFontWeight radioInput typeNormal typeA">
+                <span>font-weight:</span>
+                <input type="radio" name="weight" value="normal" id="normal"/><label for="normal">normal</label>
+                <input type="radio" name="weight" value="lighter" id="lighter"/><label for="lighter">lighter</label>
+                <input type="radio" name="weight" value="bold" id="bold"/><label for="bold">bold</label>
+            </li>
+            <li class="changeTextAlign radioInput typeNormal typeA">
                 <span>text-align:</span>
                 <input type="radio" name="text" value="left" id="left"/><label for="left">left</label>
                 <input type="radio" name="text" value="center" id="center"/><label for="center">center</label>
                 <input type="radio" name="text" value="right" id="right"/><label for="right">right</label>
             </li>
-            <li class="changeMargin">
+            <li class="changeMargin show">
                 <span>margin:</span>
                 <p><code>margin-top:</code><input class="marginTop" type="number" placeholder="" maxlength="3"/> px</p>
                 <p><code>margin-right:</code><input class="marginRight" type="number" placeholder="" maxlength="3"/> px</p>
                 <p><code>margin-bottom:</code><input class="marginBottom" type="number" placeholder="" maxlength="3"/> px</p>
                 <p><code>margin-left:</code><input class="marginLeft" type="number" placeholder="" maxlength="3"/> px</p>
             </li>
-            <li class="changePadding">
+            <li class="changePadding show">
                 <span>padding:</span>
                 <p><code>padding-top:</code><input class="paddingTop" type="number" placeholder="" maxlength="3"/> px</p>
                 <p><code>padding-right:</code><input class="paddingRight" type="number" placeholder="" maxlength="3"/> px</p>
                 <p><code>padding-bottom:</code><input class="paddingBottom" type="number" placeholder="" maxlength="3"/> px</p>
                 <p><code>padding-left:</code><input class="PaddingLeft" type="number" placeholder="" maxlength="3"/> px</p>
             </li>
-            <li class="text-area">
+            <li class="text-area show">
                 <p><span>special style:</span> <button class="copyBtn">copy</button></p>
-                <textarea rows="6" cols="120" class="specialStyleTextArea" disabled></textarea>
+                <textarea rows="6" cols="120" class="specialStyleTextArea" readonly></textarea>
+            </li>
+        </ul>
+        <p class="customType" style="margin-top: 40px">Special Script：</p>
+        <ul class="customUl">
+            <li class="changeText typeNormal typeA">
+                <span>replace text:</span>
+                <input type="text" placeholder="hello" maxlength="70"/>
+            </li>
+            <li class="changeReplaceUrl typeImg typeA">
+                <span>replace url:</span>
+                <input type="text" placeholder="" maxlength="710"/>
+            </li>
+            <li class="changeAddUrl show">
+                <span>add url:</span>
+                <input type="text" placeholder="" maxlength="710"/>
+            </li>
+            <li class="updateText show">
+                <span>add text:</span>
+                <input type="text" placeholder="" maxlength="710"/>
+            </li>
+            <li class="updateImg show">
+                <span>add img:</span>
+                <input type="text" placeholder="" maxlength="710"/>
+            </li>
+            <li class="text-area show">
+                <p><span>special script:</span> <button class="copyBtn">copy</button></p>
+                <textarea rows="6" cols="120" class="specialScriptTextArea" disabled></textarea>
             </li>
         </ul>
     </div>
