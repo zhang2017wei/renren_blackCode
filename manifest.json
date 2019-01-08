@@ -10,13 +10,8 @@
   },
   "permissions" : ["tabs","http://*/*"],
   "content_scripts":[{
-<<<<<<< HEAD
     "matches":["http://*/*","https://*/*"],
-    "js":["js/jq.js","popup/content.js"],
-=======
-    "matches":["http://*/*"],
-    "js":["js/jq.js", "js/selector.js"],
->>>>>>> refs/remotes/origin/master
+    "js":["js/jq.js","popup/content.js", "js/selector.js"],
     "run_at":"document_end"
   }]
 }
