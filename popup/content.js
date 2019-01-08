@@ -284,8 +284,8 @@ $('.movePlace .toRight').click(function () {
     $(this).css('display','none');
 });
 
-var selector = new Selector((e) => function () {
-
+var selector = new Selector((e) => {
+    console.log(e);
 });
 
 var show = false;

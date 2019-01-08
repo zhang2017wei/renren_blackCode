@@ -1,5 +1,6 @@
-function Selector(callback) {
-    this.callback = callback;
+function Selector(onClick, onStop) {
+    this.onClick = onClick;
+    this.onStop = onStop;
     this.init();
 }
 
@@ -17,7 +18,11 @@ Selector.prototype = {
         this.unbindEvents();
         if (this.mask) {
             this.mask.parentNode.removeChild(this.mask);
+            this.mask = null;
         }
+    },
+    pause: function() {
+        this.unbindEvents();
     },
     setMask: function(target) {
         this.target = target;
@@ -44,18 +49,6 @@ Selector.prototype = {
         mask.style.width = offset.width + 'px';
         mask.textContent = target.tagName;
     },
-    removeMask(target) {
-        var mask = target.getElementsByClassName('plugin-mask')[0];
-        if (mask) {
-            mask.parentNode.removeChild(mask);
-        }
-    },
-    removeAllMask() {
-        var masks = document.getElementsByClassName('plugin-mask');
-        for (let i = 0; i < masks.length; i++) {
-            masks[i].parentNode.removeChild(masks[i]);
-        }
-    },
     bindEvents: function() {
         document.addEventListener('mouseover', this.handleMouseOver);
         document.addEventListener('mouseout', this.handleMouseOut);
@@ -78,13 +71,16 @@ Selector.prototype = {
         e.stopPropagation();
     },
     handleMouseDown(e) {
-        if (this.callback) {
-            this.callback({
+        if (this.onClick) {
+            this.onClick({
                 selector: this.getSelector(this.target),
                 type: this.target.tagName.toLowerCase()
             });
+            this.pause();
         }
         this.cancelEvent(e);
+    },
+    handleKeyDown(e) {
     },
     cancelEvent(e) {
         e.preventDefault();
