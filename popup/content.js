@@ -226,7 +226,7 @@ __$('.changePadding input').change(function() {
 function previewStyle() {
     $(_class).css(_specialStyle);
     let cssString = JSON.stringify(_specialStyle);
-    cssString = cssString.replace(/"/g, '').replace(/,/g, ';');
+    cssString = cssString.replace(/"/g, '').replace(/,/g, ';').replace(/([A-Z])/g, '-$1');
     $('.specialStyleTextArea').text(`<style>${_class}${cssString}</style>`);
 }
 
