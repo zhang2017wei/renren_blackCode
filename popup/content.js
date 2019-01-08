@@ -1,5 +1,7 @@
 let _popBox = `<div class="popContent">
-    <p class="movePlace"><span class="toLeft"></span><span class="toRight"></span></p>
+    <p class="movePlace">
+    <!--<span class="toLeft">to left</span><span class="toRight">toRight</span> -->
+    <code class="close">close</code></p>
     <div class="AMCustomContent" id="AMCustomContent">
         <div class="popBox">
             <p class="customType">Special Style：</p>
@@ -96,12 +98,13 @@ let
     _specialStyle = {},
 _specialScript = [];
 
+var selector = new Selector((e) => {
+    console.log(e)
+    $('.popContent').css('display','block');
+});
 
 //追加页面内容
 $('body').append(_popBox);
-$('.popContent').hide();
-
-
 
 let _domType = '';
 let _addClass = $(".AMCustomContent .popBox .customUl");
@@ -284,9 +287,14 @@ $('.movePlace .toRight').click(function () {
     $(this).css('display','none');
 });
 
-var selector = new Selector((e) => {
-    console.log(e);
+
+$('.close').click(function () {
+    $('.popContent').css('display','none');
+    selector.start();
 });
+
+
+
 
 var show = false;
 
@@ -299,7 +307,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse)
         }else{
             selector.stop();
         }
-    } 
+    }
     if(request.cmd == 'ask'){
         sendResponse(show)
     }
