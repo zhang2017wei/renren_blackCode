@@ -172,7 +172,6 @@ $('.updateImg').change(function() {
 });
 
 function previewScript() {
-    // _specialScript = _specialScript.replace(/,/g,`;$('.${_class}')`);
-    $('.specialScriptTextArea').text(`<script>$('.${_class}')${_specialScript}</script>`);
+    $('.specialScriptTextArea').text(`<script>$('.${_class}')${_specialScript.join('')}</script>`);
 }
 
