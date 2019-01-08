@@ -6,23 +6,28 @@ Selector.prototype = {
     init: function() {
         this.bindEvents();
     },
-    addMask: function(target) {
-        var mask = this.mask = document.createElement('div');
-        mask.className = 'plugin-mask';
-        mask.style.cssText = `
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 100%;
-            z-index: 9999;
-            pointer-events: none;
-            background-color: rgba(0, 255, 255, 0.5);
-        `;
-        target.appendChild(mask);
-        if (window.getComputedStyle(target).position === 'static') {
-            target.style.position = 'relative';
+    setMask: function(target) {
+        var mask = this.mask;        
+        if (!mask) {
+            mask = this.mask = document.createElement('div');
+            mask.className = 'plugin-mask';
+            mask.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 0;
+                width: 0;
+                z-index: 9999;
+                pointer-events: none;
+                background-color: rgba(0, 255, 255, 0.5);
+            `;
+            document.body.appendChild(mask);
         }
+        let offset = $(target).offset();
+        mask.style.left = offset.left + 'px';
+        mask.style.top = offset.top + 'px';
+        mask.style.height = $(target).outerHeight() + 'px';
+        mask.style.width = $(target).outerWidth() + 'px';
     },
     removeMask(target) {
         var mask = target.getElementsByClassName('plugin-mask')[0];
@@ -41,16 +46,13 @@ Selector.prototype = {
         document.body.addEventListener('mouseout', (e) => this.handleMouseOut(e));
     },
     handleMouseOver(e) {
-        console.log('mouse enter');
         let target = e.target;
         if (target.getElementsByClassName('plugin-mask').length === 0) {
-            this.removeAllMask();
-            this.addMask(e.target);
+            this.setMask(e.target);
         }
         e.stopPropagation();
     },
     handleMouseOut(e) {
-        this.removeMask(e.target);
         e.stopPropagation();
     }
 }
