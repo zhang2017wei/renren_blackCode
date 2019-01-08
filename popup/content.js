@@ -227,7 +227,7 @@ function previewStyle() {
     $(_class).css(_specialStyle);
     let cssString = JSON.stringify(_specialStyle);
     cssString = cssString.replace(/"/g, '').replace(/,/g, ';');
-    $('.specialStyleTextArea').text(`<style>${_class}${cssString};</style>`);
+    $('.specialStyleTextArea').text(`<style>${_class}${cssString}</style>`);
 }
 
 $('body').on('click', 'copyBtn', function() {
@@ -276,7 +276,7 @@ __$('.updateImg').change(function() {
 });
 
 function previewScript() {
-    $('.specialScriptTextArea').text(`<script>$('.${_class}')${_specialScript.join('')}</script>`);
+    $('.specialScriptTextArea').text(`<script>$('${_class}')${_specialScript.join('')}</script>`);
 }
 
 
