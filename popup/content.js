@@ -160,18 +160,19 @@ $('.changeAddUrl').change(function() {
 $('.updateText').change(function() {
     let _addText = $('.updateText input').val();
     $("."+_class).before(`<p>${_addText}</p>`);
-    _specialScript.push(`<p>${_addText}</p>`);
+    _specialScript.push(`.before(<p>${_addText}</p>)`);
     previewScript();
 });
 //updateImg https://cdn.chime.me/image/fs01/agnentinfo/20180819/23/original_19725872235693598.png
 $('.updateImg').change(function() {
     let _imgUrl = $('.updateImg input').val();
     $("."+_class).before(`<img src="${_imgUrl}" alt="">`);
-    _specialScript.push(`<img src="${_imgUrl}" alt="">`);
+    _specialScript.push(`.before(<img src="${_imgUrl}" alt="">)`);
     previewScript();
 });
 
 function previewScript() {
+    // _specialScript = _specialScript.replace(/,/g,`;$('.${_class}')`);
     $('.specialScriptTextArea').text(`<script>$('.${_class}')${_specialScript}</script>`);
 }
 
