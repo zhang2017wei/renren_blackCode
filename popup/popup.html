@@ -8,6 +8,7 @@
 <body>
 <div class="testText" style="width: 36%">
     <p class="test_p1">2019年01月07日14:32:11</p>
+    <a class="test_p2" href="www.baidu.com">测试</a>
     <img src="https://cdn.chime.me/image/fs/sitebuild/20181224/16/h80_original_20f668cc-9598-4483-b21d-359571ad21f8.jpeg" alt="" class="logo">
 </div>
 <div class="AMCustomContent" id="AMCustomContent">
@@ -15,7 +16,8 @@
         <p class="customType">Special Style：</p>
         <ul>
             <li class="changeLogo radioInput">
-                <span>Logo:</span>
+                <span>scale:</span>
+                <input type="radio" name="size" value="1" id="female0"/><label for="female0">100%</label>
                 <input type="radio" name="size" value="1.2" id="female1"/><label for="female1">120%</label>
                 <input type="radio" name="size" value="1.5" id="female2"/><label for="female2">150%</label>
                 <input type="radio" name="size" value="1.8" id="female3"/><label for="female3">180%</label>
@@ -24,7 +26,7 @@
             </li>
             <li class="changeDisplay radioInput">
                 <span>display:</span>
-                <input type="radio" name="size" value="none" id="hidden"/><label for="hidden">hidden</label>
+                <input type="checkbox" name="size" value="none" id="hidden"/><label for="hidden">hidden</label>
             </li>
             <li class="changeColor">
                 <span>color:</span>
@@ -37,6 +39,12 @@
             <li class="changeFontSize">
                 <span>font-size:</span>
                 <input type="number" placeholder="14" maxlength="2"/> px
+            </li>
+            <li class="changeFontWeight radioInput">
+                <span>font-weight:</span>
+                <input type="radio" name="size" value="normal" id="normal"/><label for="normal">normal</label>
+                <input type="radio" name="size" value="lighter" id="lighter"/><label for="lighter">lighter</label>
+                <input type="radio" name="size" value="bold" id="bold"/><label for="bold">bold</label>
             </li>
             <li class="changeTextAlign radioInput">
                 <span>text-align:</span>
@@ -61,6 +69,33 @@
             <li class="text-area">
                 <p><span>special style:</span> <button class="copyBtn">copy</button></p>
                 <textarea rows="6" cols="120" class="specialStyleTextArea" disabled></textarea>
+            </li>
+        </ul>
+        <p class="customType" style="margin-top: 40px">Special Script：</p>
+        <ul>
+            <li class="changeText">
+                <span>text:</span>
+                <input type="text" placeholder="hello" maxlength="70"/>
+            </li>
+            <li class="changeReplaceUrl">
+                <span>replace url:</span>
+                <input type="text" placeholder="" maxlength="710"/>
+            </li>
+            <li class="changeAddUrl">
+                <span>add url:</span>
+                <input type="text" placeholder="" maxlength="710"/>
+            </li>
+            <li class="updateText">
+                <span>add text:</span>
+                <input type="text" placeholder="" maxlength="710"/>
+            </li>
+            <li class="updateImg">
+                <span>add img:</span>
+                <input type="text" placeholder="" maxlength="710"/>
+            </li>
+            <li class="text-area">
+                <p><span>special script:</span> <button class="copyBtn">copy</button></p>
+                <textarea rows="6" cols="120" class="specialScriptTextArea" disabled></textarea>
             </li>
         </ul>
     </div>

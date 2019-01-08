@@ -3,10 +3,10 @@ let _popBox = '';
 
 let
     _class= 'test_p1',
-    // _class = 'logo';
-    _specialStyle = {};
+    _specialStyle = {},
+_specialScript = [];
 //追加页面内容
-// $('#AMCustomContent').append(_popBox);
+$('#AMCustomContent').append(_popBox);
 
 //点击提交
 $('#submitBtn').click(function () {
@@ -24,14 +24,18 @@ $('.changeLogo').change(function() {
     let _multiple = $(".changeLogo input:radio:checked").val();
     _specialStyle.width =(_logoWidth * _multiple).toFixed(2) + 'px';
     _specialStyle.height = (_logoHeight * _multiple).toFixed(2) + 'px';
-    preview();
+    previewStyle();
 });
 
 //changeDisplay
 $('.changeDisplay').change(function() {
-    let _display = $(".changeDisplay input:radio:checked").val();
-    _specialStyle.display = _display;
-    preview();
+    let _display = $(".changeDisplay input:checked").val();
+    if(_display === 'none'){
+        _specialStyle.display = _display;
+    }else{
+        _specialStyle.display = 'block';
+    }
+    previewStyle();
 });
 
 //color
@@ -39,29 +43,35 @@ $('.changeColor').change(function() {
     let _color = $('.popBox .changeColor input').val();
     if(!_color || _color === '')return;
     _specialStyle.color = _color;
-    preview();
+    previewStyle();
 });
 
 //changeBackgroundColor
 $('.changeBackgroundColor').change(function() {
     let _BGColor = $('.popBox .changeBackgroundColor input').val();
     _specialStyle.backgroundColor = _BGColor;
-    preview();
+    previewStyle();
 });
 
 //font-size
 $('.changeFontSize').change(function() {
     let _fontSize = $('.popBox .changeFontSize input').val();
-    if(!_fontSize || _fontSize === '')return;
     _specialStyle.fontSize = _fontSize + 'px';
-    preview();
+    previewStyle();
+});
+
+//font weight
+$('.changeFontWeight').change(function() {
+    let _multiple = $(".changeFontWeight input:radio:checked").val();
+    _specialStyle.fontWeight = _multiple;
+    previewStyle();
 });
 
 //text-align
 $('.changeTextAlign').change(function() {
     let _textAlign = $(".changeTextAlign input:radio:checked").val();
     _specialStyle.textAlign  = _textAlign;
-    preview();
+    previewStyle();
 });
 
 //margin
@@ -74,7 +84,7 @@ $('.changeMargin input').change(function() {
     if(_marginRight)_specialStyle.marginRight = _marginRight + 'px';
     if(_marginBottom)_specialStyle.marginBottom = _marginBottom + 'px';
     if(_marginLeft)_specialStyle.marginLeft = _marginLeft + 'px';
-    preview();
+    previewStyle();
 });
 
 //padding
@@ -87,16 +97,52 @@ $('.changePadding input').change(function() {
     if(_paddingRight)_specialStyle.paddingRight = _paddingRight + 'px';
     if(_paddingBottom)_specialStyle.paddingBottom = _paddingBottom + 'px';
     if(_paddingLeft)_specialStyle.paddingLeft = _paddingLeft + 'px';
-    preview();
+    previewStyle();
 });
 
-
-
-
-
-function preview() {
+function previewStyle() {
     $("."+_class).css(_specialStyle);
     $('.specialStyleTextArea').text('<style>.'+_class+JSON.stringify(_specialStyle)+'</style>');
 }
 
+
+//changeText
+$('.changeText').change(function() {
+    let _text = $('.popBox .changeText input').val();
+    $("."+_class).text(_text);
+    _specialScript.push(`.text("${_text}")`);
+    previewScript();
+});
+//replace url
+$('.changeReplaceUrl').change(function() {
+    let _replaceUrl = $('.changeReplaceUrl input').val();
+    _specialScript.push(`.attr("href","${_replaceUrl}")`);
+    previewScript();
+});
+
+//changeAddUrl
+$('.changeAddUrl').change(function() {
+    let _addUrl = $('.changeAddUrl input').val();
+    $("."+_class).wrap(`<a href='${_addUrl}'></a>`);
+    _specialScript.push(`.wrap(<a href='${_addUrl}'></a>)`);
+    previewScript();
+});
+//updateText
+$('.updateText').change(function() {
+    let _addText = $('.updateText input').val();
+    $("."+_class).before(`<p>${_addText}</p>`);
+    _specialScript.push(`<p>${_addText}</p>`);
+    previewScript();
+});
+//updateImg https://cdn.chime.me/image/fs01/agnentinfo/20180819/23/original_19725872235693598.png
+$('.updateImg').change(function() {
+    let _imgUrl = $('.updateImg input').val();
+    $("."+_class).before(`<img src="${_imgUrl}" alt="">`);
+    _specialScript.push(`<img src="${_imgUrl}" alt="">`);
+    previewScript();
+});
+
+function previewScript() {
+    $('.specialScriptTextArea').text(`<script>$('.${_class}')${_specialScript}</script>`);
+}
 

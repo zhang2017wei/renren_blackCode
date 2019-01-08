@@ -2,16 +2,16 @@
   "manifest_version": 2,
   "name": "AM custom",
   "version": "0.0.1",
-  "background": { "scripts": ["jquery.min.js", "background.js"] },
+  "background": {},
   "browser_action": {
-    "default_icon": "ico.png",
+    "default_icon": "icon.png",
     "default_title": "AM custom",
     "default_popup": "popup/popup.html"
   },
   "permissions" : ["tabs","http://*/*"],
   "content_scripts":[{
     "matches":["http://*/*"],
-    "js":["jquery.min.js", "watcher.js"],
+    "js":["js/jq.js"],
     "run_at":"document_end"
   }]
 }
