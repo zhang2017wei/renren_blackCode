@@ -78,7 +78,7 @@ body {
  }
 
  .AMCustomContent .popBox .customUl li{
-     display: none;
+     /*display: none;*/
  }
 .AMCustomContent .popBox .customUl .show{
     display: block;
@@ -103,7 +103,7 @@ body {
     box-shadow: 2px 2px 10px 2px #797E8B;
     top: 0;
     left: 50%;
-    display: none;
+    /*display: none;*/
 }
 .popContent .movePlace{
     padding: 10px 0;

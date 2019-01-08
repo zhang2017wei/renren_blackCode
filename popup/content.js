@@ -99,31 +99,33 @@ let
 _specialScript = [];
 
 var selector = new Selector((e) => {
-    console.log(e)
     _class = e.selector;
-    $('.popContent').css('display','block');
+    // $('.popContent').css('display','block');
+    //追加页面内容
+    if ($('.popContent').length === 0) {
+        $('body').append(_popBox);
+    }
 });
 
-//追加页面内容
-$('body').append(_popBox);
 
-let _domType = '';
-let _addClass = $(".AMCustomContent .popBox .customUl");
+
 let _height = document.documentElement.clientHeight;
 $('.popContent').css('height',_height-10);
-switch(_domType){
-    case 'img':
-        _addClass.addClass("img");
-        break;
-    case 'a':
-        _addClass.addClass("aTage");
-        break;
-    case 'text':
-        _addClass.addClass("text");
-        break;
-    default:
-        _addClass.addClass("showAll");
-}
+// let _domType = '';
+// let _addClass = $(".AMCustomContent .popBox .customUl");
+// switch(_domType){
+//     case 'img':
+//         _addClass.addClass("img");
+//         break;
+//     case 'a':
+//         _addClass.addClass("aTage");
+//         break;
+//     case 'text':
+//         _addClass.addClass("text");
+//         break;
+//     default:
+//         _addClass.addClass("showAll");
+// }
 
 
 function __$(cls) {
@@ -175,6 +177,7 @@ __$('.changeBackgroundColor').change(function() {
 //font-size
 __$('.changeFontSize').change(function() {
     let _fontSize = $('.popBox .changeFontSize input').val();
+    console.log(_fontSize);
     _specialStyle.fontSize = _fontSize + 'px';
     previewStyle();
 });
@@ -292,7 +295,11 @@ $('.movePlace .toRight').click(function () {
 
 
 $('body').on('click', '.close', function () {
-    $('.popContent').css('display','none');
+    // $('.popContent').css('display','none');
+    //追加页面内容
+    $('.popContent').remove();
+    _specialStyle = {};
+        _specialScript = [];
     selector.start();
 });
 
