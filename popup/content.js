@@ -1,4 +1,3 @@
-
 let _popBox = `<div class="popContent">
     <p class="movePlace">
     <!--<span class="toLeft">to left</span><span class="toRight">toRight</span> -->
@@ -102,13 +101,6 @@ _specialScript = [];
 
 //追加页面内容
 $('body').append(_popBox);
-setTimeout(()=>{
-    var selector = new Selector((e) => {
-        $('.popContent').css('display','block');
-    });
-},1000);
-
-
 
 let _domType = '';
 let _addClass = $(".AMCustomContent .popBox .customUl");
@@ -291,9 +283,31 @@ $('.movePlace .toRight').click(function () {
     $(this).css('display','none');
 });
 
+
 $('.close').click(function () {
     $('.popContent').css('display','none');
     selector.start();
 });
 
+var selector = new Selector((e) => {
+    $('.popContent').css('display','block');
+});
 
+
+
+var show = false;
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse)
+{
+    if(request.cmd == 'test'){
+        show = request.value
+        if(show){
+            selector.start();
+        }else{
+            selector.stop();
+        }
+    }
+    if(request.cmd == 'ask'){
+        sendResponse(show)
+    }
+});
