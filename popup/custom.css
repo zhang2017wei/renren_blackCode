@@ -153,7 +153,8 @@ body {
     right: 0;
 }
 .popContent .movePlace .close{
-    left:90%;
+    left:auto;
+    right:20px;
     height: 30px;
     background-image: url("https://static.chimeroi.com/am/close.png");
 }

@@ -278,13 +278,13 @@ function previewScript() {
 //movePlace
 $('body').on('click','.movePlace .toLeft',function () {
     $('.popContent').css('left','0%');
-    $('.movePlace .close').css('left','10%');
+    $('.movePlace .close').css({'left':'20px','right':'auto'});
     $('.movePlace .toRight').css('display','block');
     $(this).css('display','none');
 });
 $('body').on('click','.movePlace .toRight',function () {
     $('.popContent').css('left','50%');
-    $('.movePlace .close').css('left','90%');
+    $('.movePlace .close').css({'left':'auto','right':'20px'});
     $('.movePlace .toLeft').css('display','block');
     $(this).css('display','none');
 });
@@ -318,3 +318,4 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse)
         sendResponse(show)
     }
 });
+
