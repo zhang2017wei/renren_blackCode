@@ -69,11 +69,11 @@ let _popBox = `<div class="popContent">
                     <input type="text" placeholder="hello" maxlength="70"/>
                 </li>
                 <li class="changeReplaceUrl typeImg typeA">
-                    <span>replace url:</span>
+                    <span>replace link:</span>
                     <input type="text" placeholder="" maxlength="710"/>
                 </li>
                 <li class="changeAddUrl show">
-                    <span>add url:</span>
+                    <span>add a link:</span>
                     <input type="text" placeholder="" maxlength="710"/>
                 </li>
                 <li class="updateText show">
