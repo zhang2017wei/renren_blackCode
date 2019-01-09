@@ -230,7 +230,7 @@ function previewStyle() {
     $('.specialStyleTextArea').text(`<style>${_class}${cssString}</style>`);
 }
 
-$('body').on('click', 'copyBtn', function() {
+$('body').on('click', '.copyBtn', function() {
     let inputEl = $('.specialStyleTextArea')[0]
     inputEl.focus();
     inputEl.setSelectionRange(0, inputEl.value.length);
