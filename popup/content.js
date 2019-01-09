@@ -1,7 +1,7 @@
 let _popBox = `<div class="popContent">
     <p class="movePlace">
-    <!--<span class="toLeft">to left</span><span class="toRight">toRight</span> -->
-    <code class="close icons icon-close "></code></p>
+    <span class="toLeft"></span><span class="toRight"></span> 
+    <span class="close"></span></p>
     <div class="AMCustomContent" id="AMCustomContent">
         <div class="popBox">
             <p class="customType">Special Style：</p>
@@ -69,11 +69,11 @@ let _popBox = `<div class="popContent">
                     <input type="text" placeholder="hello" maxlength="70"/>
                 </li>
                 <li class="changeReplaceUrl typeImg typeA">
-                    <span>replace url:</span>
+                    <span>replace link:</span>
                     <input type="text" placeholder="" maxlength="710"/>
                 </li>
                 <li class="changeAddUrl show">
-                    <span>add url:</span>
+                    <span>add a link:</span>
                     <input type="text" placeholder="" maxlength="710"/>
                 </li>
                 <li class="updateText show">
@@ -101,13 +101,15 @@ _specialScript = [];
 let _logoWidth,_logoHeight;
 var selector = new Selector((e) => {
     _class = e.selector;
-    // $('.popContent').css('display','block');
     //追加页面内容
     _logoWidth = $(_class).width();_logoHeight = $(_class).height();
     if ($('.popContent').length === 0) {
         $('body').append(_popBox);
     }
+    let _height = document.documentElement.clientHeight;
+    $('.popContent').css('height',_height-10);
     let _domType = e.type.toLowerCase();
+    console.log(_domType);
     let _addClass = $(".AMCustomContent .popBox .customUl");
     switch(_domType){
         case 'img':
@@ -127,11 +129,6 @@ var selector = new Selector((e) => {
     _specialStyle = {};
     _specialScript = [];
 });
-
-
-
-let _height = document.documentElement.clientHeight;
-$('.popContent').css('height',_height-10);
 
 
 function __$(cls) {
@@ -283,13 +280,15 @@ function previewScript() {
 
 
 //movePlace
-$('.movePlace .toLeft').click(function () {
+$('body').on('click','.movePlace .toLeft',function () {
     $('.popContent').css('left','0%');
+    $('.movePlace .close').css('left','10%');
     $('.movePlace .toRight').css('display','block');
     $(this).css('display','none');
 });
-$('.movePlace .toRight').click(function () {
+$('body').on('click','.movePlace .toRight',function () {
     $('.popContent').css('left','50%');
+    $('.movePlace .close').css('left','90%');
     $('.movePlace .toLeft').css('display','block');
     $(this).css('display','none');
 });
