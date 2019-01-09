@@ -109,7 +109,19 @@ body {
     display: block!important;
 }
 
+.AMCustomContent .popBox .customUl .color-list {
+    list-style: none;
+    display: inline-block;
+}
 
+.AMCustomContent .popBox .customUl .color-list li {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin-left: 10px;
+    display: inline-block;
+}
 
 .popContent{
     width: 50%;

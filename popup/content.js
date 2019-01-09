@@ -22,10 +22,20 @@ let _popBox = `<div class="popContent">
                 <li class="changeColor typeNormal typeA">
                     <span>color:</span>
                     <input type="text" placeholder="#ffffff" maxlength="7"/>
+                    <ul class="color-list">
+                        <li style='background-color:red' data-value='red'></li>
+                        <li style='background-color:green' data-value='green'></li>
+                        <li style='background-color:yellow' data-value='yellow'></li>
+                    </ul>
                 </li>
                 <li class="changeBackgroundColor typeNormal">
                     <span>backgroundColor:</span>
                     <input type="text" placeholder="#ffffff" maxlength="7"/>
+                    <ul class="color-list">
+                        <li style='background-color:red' data-value='red'></li>
+                        <li style='background-color:green' data-value='green'></li>
+                        <li style='background-color:yellow' data-value='yellow'></li>
+                    </ul>
                 </li>
                 <li class="changeFontSize typeNormal typeA">
                     <span>font-size:</span>
@@ -45,17 +55,17 @@ let _popBox = `<div class="popContent">
                 </li>
                 <li class="changeMargin show">
                     <span>margin:</span>
-                    <p><code>margin-top:</code><input class="marginTop" type="number" placeholder="" maxlength="3"/> px</p>
-                    <p><code>margin-right:</code><input class="marginRight" type="number" placeholder="" maxlength="3"/> px</p>
-                    <p><code>margin-bottom:</code><input class="marginBottom" type="number" placeholder="" maxlength="3"/> px</p>
-                    <p><code>margin-left:</code><input class="marginLeft" type="number" placeholder="" maxlength="3"/> px</p>
+                    <p><code>top:</code><input class="marginTop" type="number" placeholder="" maxlength="3"/> px</p>
+                    <p><code>bottom:</code><input class="marginBottom" type="number" placeholder="" maxlength="3"/> px</p>
+                    <p><code>left:</code><input class="marginLeft" type="number" placeholder="" maxlength="3"/> px</p>
+                    <p><code>right:</code><input class="marginRight" type="number" placeholder="" maxlength="3"/> px</p>
                 </li>
                 <li class="changePadding show">
                     <span>padding:</span>
-                    <p><code>padding-top:</code><input class="paddingTop" type="number" placeholder="" maxlength="3"/> px</p>
-                    <p><code>padding-right:</code><input class="paddingRight" type="number" placeholder="" maxlength="3"/> px</p>
-                    <p><code>padding-bottom:</code><input class="paddingBottom" type="number" placeholder="" maxlength="3"/> px</p>
-                    <p><code>padding-left:</code><input class="paddingLeft" type="number" placeholder="" maxlength="3"/> px</p>
+                    <p><code>top:</code><input class="paddingTop" type="number" placeholder="" maxlength="3"/> px</p>
+                    <p><code>bottom:</code><input class="paddingBottom" type="number" placeholder="" maxlength="3"/> px</p>
+                    <p><code>left:</code><input class="paddingLeft" type="number" placeholder="" maxlength="3"/> px</p>
+                    <p><code>right:</code><input class="paddingRight" type="number" placeholder="" maxlength="3"/> px</p>
                 </li>
                 <li class="text-area show">
                     <p><span>special style:</span> <button class="copyBtn">copy</button></p>
@@ -124,6 +134,10 @@ var selector = new Selector((e) => {
             _addClass.addClass("text");
             // _addClass.addClass("showAll");
     }
+}, () => {
+    $('.popContent').remove();
+    _specialStyle = {};
+    _specialScript = {};
 });
 
 
@@ -237,13 +251,13 @@ $('body').on('click', '.copyBtn', function() {
 __$('.changeText').change(function() {
     let _text = $('.popBox .changeText input').val();
     $(_class).text(_text);
-    _specialScript.push(`.text("${_text}")`);
+    _specialScript.changeText = `.text("${_text}")`;
     previewScript();
 });
 //replace url
 __$('.changeReplaceUrl').change(function() {
     let _replaceUrl = $('.changeReplaceUrl input').val();
-    _specialScript.push(`.attr("href","${_replaceUrl}")`);
+    _specialScript.changeReplaceUrl = `.attr("href","${_replaceUrl}")`;
     previewScript();
 });
 
@@ -251,26 +265,26 @@ __$('.changeReplaceUrl').change(function() {
 __$('.changeAddUrl').change(function() {
     let _addUrl = $('.changeAddUrl input').val();
     $(_class).wrap(`<a href='${_addUrl}'></a>`);
-    _specialScript.push(`.wrap(<a href='${_addUrl}'></a>)`);
+    _specialScript.changeAddUrl = `.wrap(<a href='${_addUrl}'></a>)`;
     previewScript();
 });
 //updateText
 __$('.updateText').change(function() {
     let _addText = $('.updateText input').val();
     $(_class).before(`<p>${_addText}</p>`);
-    _specialScript.push(`.before(<p>${_addText}</p>)`);
+    _specialScript.updateText = `.before(<p>${_addText}</p>)`;
     previewScript();
 });
 
 __$('.updateImg').change(function() {
     let _imgUrl = $('.updateImg input').val();
     $(_class).before(`<img src="${_imgUrl}" alt="">`);
-    _specialScript.push(`.before(<img src="${_imgUrl}" alt="">)`);
+    _specialScript.updateImg = `.before(<img src="${_imgUrl}" alt="">)`;
     previewScript();
 });
 
 function previewScript() {
-    $('.specialScriptTextArea').text(`<script>$('${_class}')${_specialScript.join('')}</script>`);
+    $('.specialScriptTextArea').text(`<script>$('${_class}')${Object.values(_specialScript).join('')}</script>`);
 }
 
 
@@ -295,12 +309,13 @@ $('body').on('click', '.close', function () {
     //追加页面内容
     $('.popContent').remove();
     _specialStyle = {};
-        _specialScript = [];
+    _specialScript = [];
     selector.start();
 });
 
-
-
+$('body').on('click', '.color-list li', (e) => {
+    $(e.target).parent().siblings('input').val($(e.target).data('value')).trigger('change');
+});
 
 var show = false;
 

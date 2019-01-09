@@ -2,7 +2,7 @@ var el = document.querySelector('body button')
 var show;
 
 function set(show){
-  el.innerHTML = show ? 'hide' : 'show';
+  el.innerHTML = show ? 'stop' : 'start';
   el.className = show ? 'hide' : 'show';
 }
 chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
