@@ -107,27 +107,27 @@ var selector = new Selector((e) => {
     if ($('.popContent').length === 0) {
         $('body').append(_popBox);
     }
+    let _domType = e.type.toLowerCase();
+    let _addClass = $(".AMCustomContent .popBox .customUl");
+    switch(_domType){
+        case 'img':
+            _addClass.addClass("img");
+            break;
+        case 'a':
+            _addClass.addClass("aTage");
+            break;
+        case 'text':
+            break;
+        default:
+            _addClass.addClass("text");
+            // _addClass.addClass("showAll");
+    }
 });
 
 
 
 let _height = document.documentElement.clientHeight;
 $('.popContent').css('height',_height-10);
-// let _domType = '';
-// let _addClass = $(".AMCustomContent .popBox .customUl");
-// switch(_domType){
-//     case 'img':
-//         _addClass.addClass("img");
-//         break;
-//     case 'a':
-//         _addClass.addClass("aTage");
-//         break;
-//     case 'text':
-//         _addClass.addClass("text");
-//         break;
-//     default:
-//         _addClass.addClass("showAll");
-// }
 
 
 function __$(cls) {
