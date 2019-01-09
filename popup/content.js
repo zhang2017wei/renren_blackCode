@@ -45,17 +45,17 @@ let _popBox = `<div class="popContent">
                 </li>
                 <li class="changeMargin show">
                     <span>margin:</span>
-                    <p><code>margin-top:</code><input class="marginTop" type="number" placeholder="" maxlength="3"/> px</p>
-                    <p><code>margin-right:</code><input class="marginRight" type="number" placeholder="" maxlength="3"/> px</p>
-                    <p><code>margin-bottom:</code><input class="marginBottom" type="number" placeholder="" maxlength="3"/> px</p>
-                    <p><code>margin-left:</code><input class="marginLeft" type="number" placeholder="" maxlength="3"/> px</p>
+                    <p><code>top:</code><input class="marginTop" type="number" placeholder="" maxlength="3"/> px</p>
+                    <p><code>bottom:</code><input class="marginBottom" type="number" placeholder="" maxlength="3"/> px</p>
+                    <p><code>left:</code><input class="marginLeft" type="number" placeholder="" maxlength="3"/> px</p>
+                    <p><code>right:</code><input class="marginRight" type="number" placeholder="" maxlength="3"/> px</p>
                 </li>
                 <li class="changePadding show">
                     <span>padding:</span>
-                    <p><code>padding-top:</code><input class="paddingTop" type="number" placeholder="" maxlength="3"/> px</p>
-                    <p><code>padding-right:</code><input class="paddingRight" type="number" placeholder="" maxlength="3"/> px</p>
-                    <p><code>padding-bottom:</code><input class="paddingBottom" type="number" placeholder="" maxlength="3"/> px</p>
-                    <p><code>padding-left:</code><input class="paddingLeft" type="number" placeholder="" maxlength="3"/> px</p>
+                    <p><code>top:</code><input class="paddingTop" type="number" placeholder="" maxlength="3"/> px</p>
+                    <p><code>bottom:</code><input class="paddingBottom" type="number" placeholder="" maxlength="3"/> px</p>
+                    <p><code>left:</code><input class="paddingLeft" type="number" placeholder="" maxlength="3"/> px</p>
+                    <p><code>right:</code><input class="paddingRight" type="number" placeholder="" maxlength="3"/> px</p>
                 </li>
                 <li class="text-area show">
                     <p><span>special style:</span> <button class="copyBtn">copy</button></p>
@@ -122,6 +122,10 @@ var selector = new Selector((e) => {
             _addClass.addClass("text");
             // _addClass.addClass("showAll");
     }
+}, () => {
+    $('.popContent').remove();
+    _specialStyle = {};
+    _specialScript = [];
 });
 
 
@@ -296,7 +300,7 @@ $('body').on('click', '.close', function () {
     //追加页面内容
     $('.popContent').remove();
     _specialStyle = {};
-        _specialScript = [];
+    _specialScript = [];
     selector.start();
 });
 

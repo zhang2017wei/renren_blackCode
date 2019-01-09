@@ -20,6 +20,9 @@ Selector.prototype = {
             this.mask.parentNode.removeChild(this.mask);
             this.mask = null;
         }
+        if (this.onStop) {
+            this.onStop();
+        }
     },
     pause: function() {
         this.unbindEvents();
@@ -76,7 +79,7 @@ Selector.prototype = {
                 selector: this.getSelector(this.target),
                 type: this.target.tagName.toLowerCase()
             });
-            setTimeout( ()=>this.pause(),10)
+            setTimeout( ()=>this.pause(),200)
         }
         this.cancelEvent(e);
     },
