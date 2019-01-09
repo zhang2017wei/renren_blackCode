@@ -48,6 +48,14 @@ body {
     -webkit-appearance: radio;
 }
 
+.AMCustomContent ul li input[type="radio"] {
+    -webkit-appearance: radio;
+}
+
+.AMCustomContent ul li input[type="checkbox"] {
+    -webkit-appearance: checkbox;
+}
+
 .text-area p{
     margin: 0;
     width: 86%;
