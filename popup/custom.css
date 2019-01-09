@@ -20,14 +20,22 @@ body {
     font-size: 24px;
     color: #797E8B;
     text-transform:uppercase;
+    font-size: 18px;
+    color: black;
+    margin-bottom: 12px;
 }
 .AMCustomContent ul li{
     list-style: none;
     padding-bottom: 10px;
+    text-indent: 8px;
 }
 .AMCustomContent ul li span{
     color: #515666;
     font-size: 20px;
+    font-size: 14px;
+    display: inline-block;
+    min-width: 138px;
+    text-transform: capitalize;
 }
 .AMCustomContent ul li input{
     height: 26px;
@@ -35,6 +43,9 @@ body {
     text-indent: 10px;
     color: #515666;
     font-size: 18px;
+}
+.AMCustomContent ul li input[type=radio]{
+    -webkit-appearance: radio;
 }
 
 .AMCustomContent ul li input[type="radio"] {
@@ -75,6 +86,9 @@ body {
     display: inline-block;
     width: 20%;
     min-width: 150px;
+    color: #9c6772;
+    text-transform: capitalize;
+    font-size: 12px;
 }
 
 .specialStyleTextArea{
@@ -147,6 +161,8 @@ body {
 
 .close{
     cursor: pointer;
+    margin: 3px;
+    font-size: 18px;
 }
 
 

@@ -1,7 +1,7 @@
 let _popBox = `<div class="popContent">
     <p class="movePlace">
     <!--<span class="toLeft">to left</span><span class="toRight">toRight</span> -->
-    <code class="close">close</code></p>
+    <code class="close icons icon-close "></code></p>
     <div class="AMCustomContent" id="AMCustomContent">
         <div class="popBox">
             <p class="customType">Special Style：</p>
