@@ -1,7 +1,7 @@
 let _popBox = `<div class="popContent">
     <p class="movePlace">
-    <!--<span class="toLeft">to left</span><span class="toRight">toRight</span> -->
-    <code class="close icons icon-close "></code></p>
+    <span class="toLeft"></span><span class="toRight"></span> 
+    <span class="close"></span></p>
     <div class="AMCustomContent" id="AMCustomContent">
         <div class="popBox">
             <p class="customType">Special Style：</p>
@@ -107,6 +107,8 @@ var selector = new Selector((e) => {
     if ($('.popContent').length === 0) {
         $('body').append(_popBox);
     }
+    let _height = document.documentElement.clientHeight;
+    $('.popContent').css('height',_height-10);
     let _domType = e.type.toLowerCase();
     let _addClass = $(".AMCustomContent .popBox .customUl");
     switch(_domType){
@@ -123,11 +125,6 @@ var selector = new Selector((e) => {
             // _addClass.addClass("showAll");
     }
 });
-
-
-
-let _height = document.documentElement.clientHeight;
-$('.popContent').css('height',_height-10);
 
 
 function __$(cls) {
@@ -279,13 +276,15 @@ function previewScript() {
 
 
 //movePlace
-$('.movePlace .toLeft').click(function () {
+$('body').on('click','.movePlace .toLeft',function () {
     $('.popContent').css('left','0%');
+    $('.movePlace .close').css('left','0%');
     $('.movePlace .toRight').css('display','block');
     $(this).css('display','none');
 });
-$('.movePlace .toRight').click(function () {
+$('body').on('click','.movePlace .toRight',function () {
     $('.popContent').css('left','50%');
+    $('.movePlace .close').css('left','90%');
     $('.movePlace .toLeft').css('display','block');
     $(this).css('display','none');
 });
