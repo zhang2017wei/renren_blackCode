@@ -89,19 +89,19 @@ Selector.prototype = {
     getSelector(elem) {
         let arr = [];
         let parent = elem;
-        while (parent && parent.tagName.toLowerCase() !== 'body') {
+        while (parent && parent.tagName && parent.tagName.toLowerCase() !== 'body') {
             arr.push(_getSelector(parent));
             parent = parent.parentNode;
         }
 
-        if (parent) {
+        if (parent && parent.tagName) {
             arr.push(_getSelector(parent));
         }
 
         function _getSelector(e) {
             let str = e.tagName;
             let cls = [].slice.call(e.classList);
-            if (cls.length) {
+            if (cls && cls.length) {
                 str += '.' + cls.join('.');
             }
             if (e.id) {

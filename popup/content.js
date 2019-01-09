@@ -55,7 +55,7 @@ let _popBox = `<div class="popContent">
                     <p><code>padding-top:</code><input class="paddingTop" type="number" placeholder="" maxlength="3"/> px</p>
                     <p><code>padding-right:</code><input class="paddingRight" type="number" placeholder="" maxlength="3"/> px</p>
                     <p><code>padding-bottom:</code><input class="paddingBottom" type="number" placeholder="" maxlength="3"/> px</p>
-                    <p><code>padding-left:</code><input class="PaddingLeft" type="number" placeholder="" maxlength="3"/> px</p>
+                    <p><code>padding-left:</code><input class="paddingLeft" type="number" placeholder="" maxlength="3"/> px</p>
                 </li>
                 <li class="text-area show">
                     <p><span>special style:</span> <button class="copyBtn">copy</button></p>
@@ -98,10 +98,12 @@ let
     _specialStyle = {},
 _specialScript = [];
 
+let _logoWidth,_logoHeight;
 var selector = new Selector((e) => {
     _class = e.selector;
     // $('.popContent').css('display','block');
     //追加页面内容
+    _logoWidth = $(_class).width();_logoHeight = $(_class).height();
     if ($('.popContent').length === 0) {
         $('body').append(_popBox);
     }
@@ -136,11 +138,6 @@ function __$(cls) {
     }
 }
 
-//logo
-let _logoWidth,_logoHeight;
-setTimeout(function () {//本地项目 同时渲染  所以加setTimeout
-     _logoWidth = $(_class).width();_logoHeight = $(_class).height();
-},500);
 __$('.changeLogo').change(function() {
     let _multiple = $(".changeLogo input:radio:checked").val();
     _specialStyle.width =(_logoWidth * _multiple).toFixed(2) + 'px';
