@@ -22,10 +22,20 @@ let _popBox = `<div class="popContent">
                 <li class="changeColor typeNormal typeA">
                     <span>color:</span>
                     <input type="text" placeholder="#ffffff" maxlength="7"/>
+                    <ul class="color-list">
+                        <li style='background-color:red' data-value='red'></li>
+                        <li style='background-color:green' data-value='green'></li>
+                        <li style='background-color:yellow' data-value='yellow'></li>
+                    </ul>
                 </li>
                 <li class="changeBackgroundColor typeNormal">
                     <span>backgroundColor:</span>
                     <input type="text" placeholder="#ffffff" maxlength="7"/>
+                    <ul class="color-list">
+                        <li style='background-color:red' data-value='red'></li>
+                        <li style='background-color:green' data-value='green'></li>
+                        <li style='background-color:yellow' data-value='yellow'></li>
+                    </ul>
                 </li>
                 <li class="changeFontSize typeNormal typeA">
                     <span>font-size:</span>
@@ -303,8 +313,9 @@ $('body').on('click', '.close', function () {
     selector.start();
 });
 
-
-
+$('body').on('click', '.color-list li', (e) => {
+    $(e.target).parent().siblings('input').val($(e.target).data('value')).trigger('change');
+});
 
 var show = false;
 
