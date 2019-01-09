@@ -251,7 +251,7 @@ $('body').on('click', '.copyBtn', function() {
 __$('.changeText').change(function() {
     let _text = $('.popBox .changeText input').val();
     $(_class).text(_text);
-    _specialScript.changeText = `.text("${_text}")`;
+    _specialScript.changeText = `.text('${_text.replace(/'/,"\\'")}')`;
     previewScript();
 });
 //replace url
@@ -265,21 +265,21 @@ __$('.changeReplaceUrl').change(function() {
 __$('.changeAddUrl').change(function() {
     let _addUrl = $('.changeAddUrl input').val();
     $(_class).wrap(`<a href='${_addUrl}'></a>`);
-    _specialScript.changeAddUrl = `.wrap(<a href='${_addUrl}'></a>)`;
+    _specialScript.changeAddUrl = `.wrap('<a href="${_addUrl}"></a>')`;
     previewScript();
 });
 //updateText
 __$('.updateText').change(function() {
     let _addText = $('.updateText input').val();
     $(_class).before(`<p>${_addText}</p>`);
-    _specialScript.updateText = `.before(<p>${_addText}</p>)`;
+    _specialScript.updateText = `.before('<p>${_addText.replace(/'/,"\\'")}</p>')`;
     previewScript();
 });
 
 __$('.updateImg').change(function() {
     let _imgUrl = $('.updateImg input').val();
     $(_class).before(`<img src="${_imgUrl}" alt="">`);
-    _specialScript.updateImg = `.before(<img src="${_imgUrl}" alt="">)`;
+    _specialScript.updateImg = `.before('<img src="${_imgUrl}" alt="">')`;
     previewScript();
 });
 
