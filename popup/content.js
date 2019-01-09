@@ -137,7 +137,7 @@ var selector = new Selector((e) => {
 }, () => {
     $('.popContent').remove();
     _specialStyle = {};
-    _specialScript = [];
+    _specialScript = {};
 });
 
 
@@ -251,13 +251,13 @@ $('body').on('click', '.copyBtn', function() {
 __$('.changeText').change(function() {
     let _text = $('.popBox .changeText input').val();
     $(_class).text(_text);
-    _specialScript.push(`.text("${_text}")`);
+    _specialScript.changeText = `.text("${_text}")`;
     previewScript();
 });
 //replace url
 __$('.changeReplaceUrl').change(function() {
     let _replaceUrl = $('.changeReplaceUrl input').val();
-    _specialScript.push(`.attr("href","${_replaceUrl}")`);
+    _specialScript.changeReplaceUrl = `.attr("href","${_replaceUrl}")`;
     previewScript();
 });
 
@@ -265,26 +265,26 @@ __$('.changeReplaceUrl').change(function() {
 __$('.changeAddUrl').change(function() {
     let _addUrl = $('.changeAddUrl input').val();
     $(_class).wrap(`<a href='${_addUrl}'></a>`);
-    _specialScript.push(`.wrap(<a href='${_addUrl}'></a>)`);
+    _specialScript.changeAddUrl = `.wrap(<a href='${_addUrl}'></a>)`;
     previewScript();
 });
 //updateText
 __$('.updateText').change(function() {
     let _addText = $('.updateText input').val();
     $(_class).before(`<p>${_addText}</p>`);
-    _specialScript.push(`.before(<p>${_addText}</p>)`);
+    _specialScript.updateText = `.before(<p>${_addText}</p>)`;
     previewScript();
 });
 
 __$('.updateImg').change(function() {
     let _imgUrl = $('.updateImg input').val();
     $(_class).before(`<img src="${_imgUrl}" alt="">`);
-    _specialScript.push(`.before(<img src="${_imgUrl}" alt="">)`);
+    _specialScript.updateImg = `.before(<img src="${_imgUrl}" alt="">)`;
     previewScript();
 });
 
 function previewScript() {
-    $('.specialScriptTextArea').text(`<script>$('${_class}')${_specialScript.join('')}</script>`);
+    $('.specialScriptTextArea').text(`<script>$('${_class}')${Object.values(_specialScript).join('')}</script>`);
 }
 
 
