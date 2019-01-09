@@ -101,7 +101,6 @@ _specialScript = [];
 let _logoWidth,_logoHeight;
 var selector = new Selector((e) => {
     _class = e.selector;
-    // $('.popContent').css('display','block');
     //追加页面内容
     _logoWidth = $(_class).width();_logoHeight = $(_class).height();
     if ($('.popContent').length === 0) {
@@ -110,6 +109,7 @@ var selector = new Selector((e) => {
     let _height = document.documentElement.clientHeight;
     $('.popContent').css('height',_height-10);
     let _domType = e.type.toLowerCase();
+    console.log(_domType);
     let _addClass = $(".AMCustomContent .popBox .customUl");
     switch(_domType){
         case 'img':
@@ -278,7 +278,7 @@ function previewScript() {
 //movePlace
 $('body').on('click','.movePlace .toLeft',function () {
     $('.popContent').css('left','0%');
-    $('.movePlace .close').css('left','0%');
+    $('.movePlace .close').css('left','10%');
     $('.movePlace .toRight').css('display','block');
     $(this).css('display','none');
 });

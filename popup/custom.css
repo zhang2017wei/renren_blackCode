@@ -59,7 +59,7 @@ body {
 .text-area p{
     margin: 0;
     width: 86%;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 }
 
 .text-area p .copyBtn{
@@ -100,7 +100,7 @@ body {
  }
 
  .AMCustomContent .popBox .customUl li{
-     /*display: none;*/
+     display: none;
  }
 .AMCustomContent .popBox .customUl .show{
     display: block;
